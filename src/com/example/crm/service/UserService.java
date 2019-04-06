@@ -1,4 +1,7 @@
 package com.example.crm.service;
 
-public class UserService {
+import com.example.crm.domain.User;
+
+public interface UserService {
+    void regist(User user);
 }

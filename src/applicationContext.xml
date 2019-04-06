@@ -34,8 +34,27 @@
         </property>
         <property name="mappingResources">
             <list>
+                <value>com/example/crm/domain/User.hbm.xml</value>
             </list>
         </property>
+    </bean>
+
+    <bean id="transactonManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactonManager"/>
+
+    <bean id="userAction" class="com.example.crm.web.action.UserAction" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean id="userDao" class="com.example.crm.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="userService" class="com.example.crm.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
     </bean>
 
 
