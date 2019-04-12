@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: 13218
@@ -11,6 +12,8 @@
     <TITLE>客户关系管理系统</TITLE>
     <META http-equiv=Content-Type content="text/html; charset=utf-8">
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
+    <script src="js/jquery-1.4.4.min.js"></script>
+
 </HEAD>
 <FRAMESET frameSpacing=0 rows=80,* frameBorder=0>
     <FRAME name=top src="top.jsp" frameBorder=0 noResize

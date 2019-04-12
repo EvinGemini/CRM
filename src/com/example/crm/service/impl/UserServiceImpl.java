@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
         user.setUser_state("1");
         userDao.save(user);
     }
+
+    @Override
+    public User login(User loginUser) {
+        return userDao.findUserByCodeAndPassword(loginUser);
+    }
 }

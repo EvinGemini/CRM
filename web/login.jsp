@@ -60,6 +60,7 @@
                             </TR>
                             <TR>
                                 <TD width=360></TD>
+                                <s:actionerror/>
                                 <TD>
                                     <TABLE cellSpacing=0 cellPadding=2 border=0>
                                         <TBODY>
