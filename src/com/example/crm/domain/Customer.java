@@ -11,6 +11,7 @@ public class Customer {
     private BaseDict baseDictLevel;
     private String cust_phone;      //固定电话
     private String cust_mobile;          //移动电话
+    private String cust_image;
 
     public Long getCust_id() {
         return cust_id;
@@ -66,5 +67,13 @@ public class Customer {
 
     public void setCust_mobile(String cust_mobile) {
         this.cust_mobile = cust_mobile;
+    }
+
+    public String getCust_image() {
+        return cust_image;
+    }
+
+    public void setCust_image(String cust_image) {
+        this.cust_image = cust_image;
     }
 }

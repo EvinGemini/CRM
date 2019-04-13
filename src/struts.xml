@@ -3,6 +3,7 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
+    <constant name="struts.multipart.maxSize" value="10485760" />
     <package name="crm" extends="struts-default" namespace="/">
         <global-allowed-methods>regex:.*</global-allowed-methods>
         <action name="user_*" class="userAction" method="{1}">
@@ -10,8 +11,14 @@
             <result name="success">/index.jsp</result>
         </action>
         <action name="customer_*" class="customerAction" method="{1}">
+            <result name="input">/jsp/customer/add.jsp</result>
             <result name="saveUI">/jsp/customer/add.jsp</result>
             <result name="findAll">/jsp/customer/list.jsp</result>
+            <result name="saveSuccess" type="redirectAction">customer_findAll.action</result>
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.maximumSize">2097152</param>
+                <param name="fileUpload.allowedExtensions">.jpg</param>
+            </interceptor-ref>
         </action>
         <action name="baseDict_*" class="baseDictAction" method="{1}">
 

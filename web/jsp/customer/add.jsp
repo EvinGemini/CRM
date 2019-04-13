@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,9 +37,9 @@
 <BODY>
 <FORM id=form1 name=form1
       action="${pageContext.request.contextPath }/customer_save.action"
-      method=post>
+      method=post enctype="multipart/form-data">
 
-
+    <s:fielderror/>
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
         <TR>
@@ -67,7 +68,6 @@
                 </TABLE>
 
                 <TABLE cellSpacing=0 cellPadding=5 border=0>
-
 
                     <TR>
                         <td>客户名称：</td>
@@ -106,8 +106,6 @@
                     </TR>
 
                     <TR>
-
-
                         <td>固定电话 ：</td>
                         <td>
                             <INPUT class=textbox id=cust_phone
@@ -118,6 +116,14 @@
                             <INPUT class=textbox id=cust_mobile
                                    style="WIDTH: 180px" maxLength=50 name="cust_mobile">
                         </td>
+                    </TR>
+
+                    <TR>
+                        <td>客户资质 ：</td>
+                        <td>
+                            <input type="file" name="upload">
+                        </td>
+
                     </TR>
 
 

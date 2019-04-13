@@ -10,6 +10,7 @@
         <property name="cust_name"/>
         <property name="cust_phone"/>
         <property name="cust_mobile"/>
+        <property name="cust_image" column="cust_image"/>
         <many-to-one name="baseDictSource" column="cust_source" class="com.example.crm.domain.BaseDict"/>
         <many-to-one name="baseDictIndustry" column="cust_industry" class="com.example.crm.domain.BaseDict"/>
         <many-to-one name="baseDictLevel" column="cust_level" class="com.example.crm.domain.BaseDict"/>
