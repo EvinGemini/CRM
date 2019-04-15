@@ -166,8 +166,8 @@
                                                            target=main>－ 新增联系人</A></TD>
                                 </TR>
                                 <TR>
-                                    <TD class=menuSmall><A class=style2 href="linkmanServlet?method=list"
-                                                           target=main>－联系人列表</A></TD>
+                                    <TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath}/linkMan_findAll.action"
+                                                           target=main>－ 联系人列表</A></TD>
                                 </TR>
 
                                 </TBODY>

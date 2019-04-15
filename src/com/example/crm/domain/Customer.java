@@ -1,5 +1,8 @@
 package com.example.crm.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer {
     private Long cust_id;           //客户编号(主键)
     private String cust_name;       //客户名称
@@ -12,6 +15,7 @@ public class Customer {
     private String cust_phone;      //固定电话
     private String cust_mobile;          //移动电话
     private String cust_image;
+    private Set<LinkMan> linkMans = new HashSet<>();
 
     public Long getCust_id() {
         return cust_id;
@@ -77,4 +81,11 @@ public class Customer {
         this.cust_image = cust_image;
     }
 
+    public Set<LinkMan> getLinkMans() {
+        return linkMans;
+    }
+
+    public void setLinkMans(Set<LinkMan> linkMans) {
+        this.linkMans = linkMans;
+    }
 }
