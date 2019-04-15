@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.core.util.UuidUtil;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,6 +87,21 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
     public String findAll() {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Customer.class);
+        if (customer.getCust_name() != null && !"".equals(customer.getCust_name())) {
+            detachedCriteria.add(Restrictions.like("cust_name","%"+customer.getCust_name()+"%"));
+        }
+        if (customer.getBaseDictSource() != null && customer.getBaseDictSource().getDict_id() != null &&
+                !"".equals(customer.getBaseDictSource().getDict_id())) {
+            detachedCriteria.add(Restrictions.eq("baseDictSource.dict_id",customer.getBaseDictSource().getDict_id()));
+        }
+        if (customer.getBaseDictIndustry() != null && customer.getBaseDictIndustry().getDict_id() != null &&
+                !"".equals(customer.getBaseDictIndustry().getDict_id())) {
+            detachedCriteria.add(Restrictions.eq("baseDictIndustry.dict_id",customer.getBaseDictIndustry().getDict_id()));
+        }
+        if (customer.getBaseDictLevel() != null && customer.getBaseDictLevel().getDict_id() != null &&
+                !"".equals(customer.getBaseDictLevel().getDict_id())) {
+            detachedCriteria.add(Restrictions.eq("baseDictLevel.dict_id",customer.getBaseDictLevel().getDict_id()));
+        }
         PageBean<Customer> pageBean = customerService.findAll(detachedCriteria,currentPage,pageSize);
         ActionContext.getContext().getValueStack().push(pageBean);
         return "findAll";

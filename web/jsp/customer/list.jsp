@@ -8,8 +8,9 @@
     <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
     <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
           rel=stylesheet>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
     <%@taglib uri="/struts-tags" prefix="s" %>
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
     <SCRIPT language=javascript>
         function to_page(page) {
             if (page) {
@@ -19,14 +20,39 @@
 
         }
     </SCRIPT>
+    <script type="text/javascript">
+        $(function () {
+            $.post("${pageContext.request.contextPath}/baseDict_findByTypeCode.action", {"dict_type_code": "002"}, function (data) {
+                $(data).each(function (index, element) {
+                    $("#select_source").append("<option value='" + element.dict_id + "'>" + element.dict_item_name + "</option>")
+                });
+                $("#select_source option[value='${model.baseDictSource.dict_id}']").prop("selected", "selected");
+            }, "json");
+        });
+        $(function () {
+            $.post("${pageContext.request.contextPath}/baseDict_findByTypeCode.action", {"dict_type_code": "001"}, function (data) {
+                $(data).each(function (index, element) {
+                    $("#select_industry").append("<option value='" + element.dict_id + "'>" + element.dict_item_name + "</option>")
+                });
+                $("#select_industry option[value='${model.baseDictIndustry.dict_id}']").prop("selected","selected");
+            }, "json");
+        });
+        $(function () {
+            $.post("${pageContext.request.contextPath}/baseDict_findByTypeCode.action", {"dict_type_code": "006"}, function (data) {
+                $(data).each(function (index, element) {
+                    $("#select_level").append("<option value='" + element.dict_id + "'>" + element.dict_item_name + "</option>")
+                });
+                $("#select_level option[value='${model.baseDictLevel.dict_id}']").prop("selected", "selected");
+            }, "json");
+        });
+    </script>
     <%--<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-<FORM id="customerForm" name="customerForm"
-      action="${pageContext.request.contextPath }/customer_findAll.action" method=post>
 
+<s:form id="customerForm" name="customerForm" action="customer_findAll.action" method="POST" theme="simple">
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
         <TR>
@@ -62,8 +88,29 @@
                                 <TBODY>
                                 <TR>
                                     <TD>客户名称：</TD>
-                                    <TD><INPUT class=textbox id=sChannel2
-                                               style="WIDTH: 80px" maxLength=50 name="custName"></TD>
+                                    <td>
+                                        <s:textfield name="model.cust_name" cssClass="textbox" id="sChannel2"
+                                                     cssStyle="WIDTH: 80px" maxlength="50"/>
+                                    </td>
+
+                                    <TD>客户来源：</TD>
+                                    <td>
+                                        <select name="baseDictSource.dict_id" id="select_source">
+                                            <option value="">--请选择--</option>
+                                        </select>
+                                    </td>
+                                    <TD>客户所属行业：</TD>
+                                    <td>
+                                        <select name="baseDictIndustry.dict_id" id="select_industry">
+                                            <option value="">--请选择--</option>
+                                        </select>
+                                    </td>
+                                    <TD>客户级别：</TD>
+                                    <td>
+                                        <select name="baseDictLevel.dict_id" id="select_level">
+                                            <option value="">--请选择--</option>
+                                        </select>
+                                    </td>
 
                                     <TD><INPUT class=button id=sButton2 type=submit
                                                value=" 筛选 " name=sButton2></TD>
@@ -89,7 +136,7 @@
                                     <TD>手机</TD>
                                     <TD>操作</TD>
                                 </TR>
-                                <%--<c:forEach items="${list }" var="customer">--%>
+                                    <%--<c:forEach items="${list }" var="customer">--%>
                                 <s:iterator value="list">
                                     <TR
                                             style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
@@ -106,7 +153,7 @@
                                         </TD>
                                     </TR>
                                 </s:iterator>
-                                <%--</c:forEach>--%>
+                                    <%--</c:forEach>--%>
 
                                 </TBODY>
                             </TABLE>
@@ -121,14 +168,18 @@
                                                     value="totalPage"/> </B>]页
 												,每页显示
 												<select name="pageSize" onchange="to_page()">
-												    <option value="3" <s:if test="pageSize == 3">selected</s:if>>3</option>
-												    <option value="5" <s:if test="pageSize == 5">selected</s:if>>5</option>
-                                                    <option value="10" <s:if test="pageSize == 10">selected</s:if>>10</option>
+												    <option value="3"
+                                                            <s:if test="pageSize == 3">selected</s:if>>3</option>
+												    <option value="5"
+                                                            <s:if test="pageSize == 5">selected</s:if>>5</option>
+                                                    <option value="10"
+                                                            <s:if test="pageSize == 10">selected</s:if>>10</option>
 												</select>
 												条
                                                 <s:if test="currentPage != 1">
                                                     [<A href="javascript:to_page(<s:property value='1'/> )">首页</A>]
-												    [<A href="javascript:to_page(<s:property value='currentPage - 1'/> )">前一页</A>]&nbsp;&nbsp;
+                                                    [<A href="javascript:to_page(<s:property
+                                                        value='currentPage - 1'/> )">前一页</A>]&nbsp;&nbsp;
                                                 </s:if>
 												<B>
                                                     <s:iterator var="i" begin="1" end="totalPage">
@@ -136,13 +187,15 @@
                                                             <s:property value="#i"/>
                                                         </s:if>
                                                         <s:else>
-                                                            <a href="javascript:to_page(<s:property value="#i"/>)"><s:property value="#i"/></a>
+                                                            <a href="javascript:to_page(<s:property value="#i"/>)"><s:property
+                                                                    value="#i"/></a>
                                                         </s:else>
                                                     </s:iterator>
                                                 </B>
                                                 <s:if test="currentPage != totalPage">
-                                                    &nbsp;&nbsp;[<A href="javascript:to_page(<s:property value='totalPage'/>)">后一页</A>]
-												    [<A href="javascript:to_page(<s:property value='currentPage + 1'/>)">尾页</A>]
+                                                    &nbsp;&nbsp;[<A href="javascript:to_page(<s:property
+                                                        value='totalPage'/>)">后一页</A>]
+                                                    [<A href="javascript:to_page(<s:property value='currentPage + 1'/>)">尾页</A>]
                                                 </s:if>
 												到
 												<input type="text" size="3" id="page" name="currentPage"/>
@@ -171,6 +224,6 @@
         </TR>
         </TBODY>
     </TABLE>
-</FORM>
+</s:form>
 </BODY>
 </HTML>
