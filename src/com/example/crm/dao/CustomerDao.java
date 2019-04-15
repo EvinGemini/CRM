@@ -12,4 +12,10 @@ public interface CustomerDao {
     Integer findTotalCount(DetachedCriteria detachedCriteria);
 
     List<Customer> findAll(DetachedCriteria detachedCriteria, Integer begin, Integer pageSize);
+
+    Customer findCustomerById(Long cust_id);
+
+    void delete(Customer findCustomer);
+
+    void update(Customer customer);
 }

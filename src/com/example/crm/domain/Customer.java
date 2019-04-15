@@ -76,4 +76,5 @@ public class Customer {
     public void setCust_image(String cust_image) {
         this.cust_image = cust_image;
     }
+
 }

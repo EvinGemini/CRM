@@ -15,6 +15,9 @@
             <result name="saveUI">/jsp/customer/add.jsp</result>
             <result name="findAll">/jsp/customer/list.jsp</result>
             <result name="saveSuccess" type="redirectAction">customer_findAll.action</result>
+            <result name="deleteSuccess" type="redirectAction">customer_findAll.action</result>
+            <result name="edit">/jsp/customer/edit.jsp</result>
+            <result name="update" type="redirectAction">customer_findAll.action</result>
             <interceptor-ref name="defaultStack">
                 <param name="fileUpload.maximumSize">2097152</param>
                 <param name="fileUpload.allowedExtensions">.jpg</param>

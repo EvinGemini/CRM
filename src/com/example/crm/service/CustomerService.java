@@ -8,4 +8,10 @@ public interface CustomerService {
     void save(Customer customer);
 
     PageBean<Customer> findAll(DetachedCriteria detachedCriteria, Integer currentPage, Integer pageSize);
+
+    Customer findCustomerById(Long cust_id);
+
+    void delete(Customer findCustomer);
+
+    void update(Customer customer);
 }
