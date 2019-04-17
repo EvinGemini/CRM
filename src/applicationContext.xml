@@ -90,6 +90,7 @@
     <!--联系人模块相关类-->
     <bean id="linkManAction" class="com.example.crm.web.action.LinkManAction">
         <property name="linkManService" ref="linkManService"/>
+        <property name="customerService" ref="customerService"/>
     </bean>
 
     <bean id="linkManService" class="com.example.crm.service.impl.LinkManServiceImpl">

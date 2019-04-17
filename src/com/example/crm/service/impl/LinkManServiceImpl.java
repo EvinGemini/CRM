@@ -6,8 +6,10 @@ import com.example.crm.domain.PageBean;
 import com.example.crm.service.LinkManService;
 import org.hibernate.criterion.DetachedCriteria;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class LinkManServiceImpl implements LinkManService {
     private LinkManDao linkManDao;
 
@@ -30,5 +32,25 @@ public class LinkManServiceImpl implements LinkManService {
         List<LinkMan> list = linkManDao.findByPage(detachedCriteria,begin,pageSize);
         pageBean.setList(list);
         return pageBean;
+    }
+
+    @Override
+    public void save(LinkMan linkMan) {
+        linkManDao.save(linkMan);
+    }
+
+    @Override
+    public void update(LinkMan linkMan) {
+        linkManDao.update(linkMan);
+    }
+
+    @Override
+    public LinkMan findLinkManById(Long lkm_id) {
+        return linkManDao.findLinkManById(lkm_id);
+    }
+
+    @Override
+    public void delete(LinkMan linkMan) {
+        linkManDao.delete(linkMan);
     }
 }

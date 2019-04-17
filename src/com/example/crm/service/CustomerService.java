@@ -4,6 +4,8 @@ import com.example.crm.domain.Customer;
 import com.example.crm.domain.PageBean;
 import org.hibernate.criterion.DetachedCriteria;
 
+import java.util.List;
+
 public interface CustomerService {
     void save(Customer customer);
 
@@ -14,4 +16,6 @@ public interface CustomerService {
     void delete(Customer findCustomer);
 
     void update(Customer customer);
+
+    List<Customer> findAll();
 }
