@@ -27,20 +27,20 @@ public class CustomerServiceImpl implements CustomerService {
         PageBean<Customer> pageBean = new PageBean<>();
         pageBean.setCurrentPage(currentPage);
         pageBean.setPageSize(pageSize);
-        Integer totalCount = customerDao.findTotalCount(detachedCriteria);
+        Integer totalCount = customerDao.findCount(detachedCriteria);
         pageBean.setTotalCount(totalCount);
         Double tc = totalCount.doubleValue();
         Double num = Math.ceil(tc / pageSize);
         pageBean.setTotalPage(num.intValue());
         Integer begin = (currentPage - 1) * pageSize;
-        List<Customer> customerList = customerDao.findAll(detachedCriteria,begin,pageSize);
+        List<Customer> customerList = customerDao.findByPage(detachedCriteria,begin,pageSize);
         pageBean.setList(customerList);
         return pageBean;
     }
 
     @Override
     public Customer findCustomerById(Long cust_id) {
-        return customerDao.findCustomerById(cust_id);
+        return customerDao.findById(cust_id);
     }
 
     @Override

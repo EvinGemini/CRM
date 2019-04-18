@@ -195,7 +195,7 @@
                                                 <s:if test="currentPage != totalPage">
                                                     &nbsp;&nbsp;[<A href="javascript:to_page(<s:property
                                                         value='totalPage'/>)">后一页</A>]
-                                                    [<A href="javascript:to_page(<s:property value='currentPage + 1'/>)">尾页</A>]
+                                                    [<A href="javascript:to_page(<s:property value='totalPage'/>)">尾页</A>]
                                                 </s:if>
 												到
 												<input type="text" size="3" id="page" name="currentPage"/>

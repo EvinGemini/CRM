@@ -6,11 +6,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import java.util.List;
 
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
-    @Override
-    public void save(User user) {
-        getHibernateTemplate().save(user);
-    }
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
     @Override
     public User findUserByCodeAndPassword(User loginUser) {

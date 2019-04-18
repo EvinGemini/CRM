@@ -88,7 +88,7 @@
     </bean>
 
     <!--联系人模块相关类-->
-    <bean id="linkManAction" class="com.example.crm.web.action.LinkManAction">
+    <bean id="linkManAction" class="com.example.crm.web.action.LinkManAction" scope="prototype">
         <property name="linkManService" ref="linkManService"/>
         <property name="customerService" ref="customerService"/>
     </bean>

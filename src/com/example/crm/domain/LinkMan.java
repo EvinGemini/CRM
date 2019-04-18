@@ -1,5 +1,8 @@
 package com.example.crm.domain;
 
+import lombok.ToString;
+
+@ToString(exclude = {"customer"})
 public class LinkMan {
 
     private Long lkm_id;    //联系人编号(主键)
@@ -92,4 +95,6 @@ public class LinkMan {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+
 }
