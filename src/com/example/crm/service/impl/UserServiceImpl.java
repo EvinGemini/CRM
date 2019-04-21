@@ -6,6 +6,7 @@ import com.example.crm.service.UserService;
 import com.example.crm.utils.MD5Utils;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -25,5 +26,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User loginUser) {
         return userDao.findUserByCodeAndPassword(loginUser);
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return userDao.findAll();
     }
 }

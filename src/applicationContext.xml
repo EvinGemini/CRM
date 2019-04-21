@@ -38,9 +38,12 @@
                 <value>com/example/crm/domain/Customer.hbm.xml</value>
                 <value>com/example/crm/domain/BaseDict.hbm.xml</value>
                 <value>com/example/crm/domain/LinkMan.hbm.xml</value>
+                <value>com/example/crm/domain/SaleVisit.hbm.xml</value>
             </list>
         </property>
     </bean>
+
+    <context:annotation-config/>
 
     <bean id="transactonManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -98,6 +101,16 @@
     </bean>
 
     <bean id="linkManDao" class="com.example.crm.dao.impl.LinkManDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--拜访记录相关类-->
+    <bean id="saleVisitAction" class="com.example.crm.web.action.SaleVisitAction" scope="prototype">
+    </bean>
+
+    <bean id="saleVisitService" class="com.example.crm.service.impl.SaleVisitServiceImpl"></bean>
+
+    <bean id="saleVisitDao" class="com.example.crm.dao.impl.SaleVisitDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 </beans>

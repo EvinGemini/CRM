@@ -1,5 +1,8 @@
 package com.example.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,12 +12,16 @@ public class Customer {
 //    private String cust_source;     //客户信息来源
 //    private String cust_industry;   //客户所属行业
 //    private String cust_level;      //客户级别
+    @JsonIgnore
     private BaseDict baseDictSource;
+    @JsonIgnore
     private BaseDict baseDictIndustry;
+    @JsonIgnore
     private BaseDict baseDictLevel;
     private String cust_phone;      //固定电话
     private String cust_mobile;          //移动电话
     private String cust_image;
+    @JsonIgnore
     private Set<LinkMan> linkMans = new HashSet<>();
 
     public Long getCust_id() {

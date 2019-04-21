@@ -4,16 +4,20 @@ import com.example.crm.domain.Customer;
 import com.example.crm.domain.PageBean;
 import com.example.crm.service.CustomerService;
 import com.example.crm.utils.UploadUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.core.util.UuidUtil;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
     private Customer customer = new Customer();
@@ -153,5 +157,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
         }
         customerService.update(customer);
         return "update";
+    }
+
+    public String findAllCustomer() throws IOException {
+        List<Customer> list = customerService.findAll();
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("application/json;charset=utf-8");
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(response.getWriter(),list);
+        return NONE;
     }
 }
